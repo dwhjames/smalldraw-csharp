@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9670B14D-60E8-4D10-85BE-BE2E56295245}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmallDraw</RootNamespace>
+    <AssemblyName>SmallDraw</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Basic\BasicCanvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Basic\BasicCanvasEventHandler.cs" />
+    <Compile Include="Basic\BasicFigure.cs" />
+    <Compile Include="Basic\ConstructionTool.cs" />
+    <Compile Include="Basic\LocatorHandle.cs" />
+    <Compile Include="Basic\SelectionTool.cs" />
+    <Compile Include="Basic\ToolWidget.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Figure\Polygon\NgonToolWidget.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Figure\Polygon\PolygonFigure.cs" />
+    <Compile Include="Figure\Polygon\PolygonTool.cs" />
+    <Compile Include="Figure\Rectangle\FilledRectangleFigure.cs" />
+    <Compile Include="Figure\Rectangle\FilledRectangleTool.cs" />
+    <Compile Include="Figure\Rectangle\RectangleFigure.cs" />
+    <Compile Include="Figure\Rectangle\RectangleTool.cs" />
+    <Compile Include="ShapeDraw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Figure\Line\ConnectingLineFigure.cs" />
+    <Compile Include="Figure\Line\ConnectorHandle.cs" />
+    <Compile Include="Figure\Line\LineFigure.cs" />
+    <Compile Include="Figure\Line\LineTool.cs" />
+    <Compile Include="ICanvas.cs" />
+    <Compile Include="ICanvasEventHandler.cs" />
+    <Compile Include="IFigure.cs" />
+    <Compile Include="IHandle.cs" />
+    <Compile Include="ILocator.cs" />
+    <Compile Include="IObservable.cs" />
+    <Compile Include="IObserver.cs" />
+    <Compile Include="Locator\BottomLeftLocator.cs" />
+    <Compile Include="Locator\BottomMidLocator.cs" />
+    <Compile Include="Locator\BottomRightLocator.cs" />
+    <Compile Include="Locator\LeftMidLocator.cs" />
+    <Compile Include="Locator\PointLocator.cs" />
+    <Compile Include="Locator\ProportionalLocator.cs" />
+    <Compile Include="Locator\ReshapingLocator.cs" />
+    <Compile Include="Locator\RightMidLocator.cs" />
+    <Compile Include="Locator\TopLeftLocator.cs" />
+    <Compile Include="Locator\TopMidLocator.cs" />
+    <Compile Include="Locator\TopRightLocator.cs" />
+    <Compile Include="Util\Geometry.cs" />
+    <Compile Include="Util\PointRef.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
