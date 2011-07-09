@@ -40,16 +40,22 @@ namespace SmallDraw.Basic
         #endregion
 
         #region overriding System.Windows.Forms.Control
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            e.Graphics.FillRectangle(Brushes.White, e.ClipRectangle);
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
             var g = e.Graphics;
 
-            g.FillRectangle(Brushes.White, this.Bounds);
+            // g.FillRectangle(Brushes.White, this.Bounds);
 
             // shade the selection rectangle under all figures
-            if (_selectionRectangle.IsEmpty)
+            if (!_selectionRectangle.IsEmpty)
             {
                 g.FillRectangle(Brushes.WhiteSmoke, _selectionRectangle);
             }
@@ -68,7 +74,7 @@ namespace SmallDraw.Basic
             }
 
             // now redraw the outline of the selection rectangle, on top of all figures
-            if (_selectionRectangle.IsEmpty)
+            if (!_selectionRectangle.IsEmpty)
             {
                 g.DrawRectangle(Pens.Red, _selectionRectangle);
             }
@@ -210,7 +216,7 @@ namespace SmallDraw.Basic
 
         public void Repaint(Rectangle r)
         {
-            this.Invalidate(r);
+            this.Invalidate();
         }
         #endregion
     }

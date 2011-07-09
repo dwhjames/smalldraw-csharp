@@ -119,6 +119,8 @@ namespace SmallDraw.Figure.Line
             set
             {
                 _startLocator.Location = value;
+                // keep _location and _size in sync
+                RecomputeShapeFromBounds();
             }
         }
 
@@ -131,6 +133,8 @@ namespace SmallDraw.Figure.Line
             set
             {
                 _endLocator.Location = value;
+                // keep _location and _size in sync
+                RecomputeShapeFromBounds();
             }
         }
 

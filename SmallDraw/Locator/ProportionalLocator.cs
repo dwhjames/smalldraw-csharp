@@ -29,6 +29,7 @@ namespace SmallDraw.Locator
         /// <param name="location">the relative location</param>
         public ProportionalLocator(IFigure figure, SizeF relative)
         {
+            this._figure = figure;
             this._relative = relative;
         }
 

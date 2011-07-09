@@ -36,8 +36,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basic\BasicCanvas.cs">
@@ -48,11 +50,17 @@
     <Compile Include="Basic\ConstructionTool.cs" />
     <Compile Include="Basic\LocatorHandle.cs" />
     <Compile Include="Basic\SelectionTool.cs" />
-    <Compile Include="Basic\ToolWidget.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Basic\ShapeControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Figure\Polygon\NgonToolWidget.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Basic\ShapeControl.Designer.cs">
+      <DependentUpon>ShapeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Figure\Polygon\NgonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Figure\Polygon\NgonControl.Designer.cs">
+      <DependentUpon>NgonControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Figure\Polygon\PolygonFigure.cs" />
     <Compile Include="Figure\Polygon\PolygonTool.cs" />
@@ -60,9 +68,7 @@
     <Compile Include="Figure\Rectangle\FilledRectangleTool.cs" />
     <Compile Include="Figure\Rectangle\RectangleFigure.cs" />
     <Compile Include="Figure\Rectangle\RectangleTool.cs" />
-    <Compile Include="ShapeDraw.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Figure\Line\ConnectingLineFigure.cs" />
     <Compile Include="Figure\Line\ConnectorHandle.cs" />
     <Compile Include="Figure\Line\LineFigure.cs" />
@@ -85,9 +91,21 @@
     <Compile Include="Locator\TopLeftLocator.cs" />
     <Compile Include="Locator\TopMidLocator.cs" />
     <Compile Include="Locator\TopRightLocator.cs" />
+    <Compile Include="ShapeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShapeForm.Designer.cs">
+      <DependentUpon>ShapeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Util\Geometry.cs" />
     <Compile Include="Util\PointRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Basic\ShapeControl.resx">
+      <DependentUpon>ShapeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Figure\Polygon\NgonControl.resx">
+      <DependentUpon>NgonControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -97,6 +115,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ShapeForm.resx">
+      <DependentUpon>ShapeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

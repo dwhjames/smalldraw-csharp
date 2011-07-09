@@ -52,25 +52,13 @@ namespace SmallDraw.Basic
         }
 
         public virtual void MouseDown(object sender, MouseEventArgs e)
-        {
-            // ignore event if left button is not pressed
-            if (e.Button != MouseButtons.Left)
-                return;
-        }
+        { }
 
         public virtual void MouseMove(object sender, MouseEventArgs e)
-        {
-            // ignore event if left button is not pressed
-            if (e.Button != MouseButtons.Left)
-                return;
-        }
+        { }
 
         public virtual void MouseUp(object sender, MouseEventArgs e)
-        {
-            // ignore event if left button is not pressed
-            if (e.Button != MouseButtons.Left)
-                return;
-        }
+        { }
         #endregion
     }
 }

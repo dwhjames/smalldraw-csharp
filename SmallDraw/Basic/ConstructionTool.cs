@@ -43,7 +43,7 @@ namespace SmallDraw.Basic
         #region overriding of BasicCanvasEventHandler
         public override void MouseDown(object sender, MouseEventArgs e)
         {
-            base.MouseDown(sender, e);
+            if (e.Button != MouseButtons.Left) return;
 
             _start = e.Location;
             _newFigure = NewFigureAt(e.Location);
@@ -63,7 +63,7 @@ namespace SmallDraw.Basic
 
         public override void MouseUp(object sender, MouseEventArgs e)
         {
-            base.MouseUp(sender, e);
+            if (e.Button != MouseButtons.Left) return;
 
             _newFigure = default(F);
         }

@@ -68,7 +68,7 @@ namespace SmallDraw.Basic
 
         public override void MouseDown(object sender, MouseEventArgs e)
         {
-            base.MouseDown(sender, e);
+            if (e.Button != MouseButtons.Left) return;
 
             foreach (var f in _canvas.SelectedFigures)
             {
@@ -104,7 +104,7 @@ namespace SmallDraw.Basic
 
         public override void MouseMove(object sender, MouseEventArgs e)
         {
-            base.MouseMove(sender, e);
+            if (e.Button != MouseButtons.Left) return;
 
             if (_selectedHandle != null) // a locator is being dragged
             {
@@ -126,7 +126,7 @@ namespace SmallDraw.Basic
 
         public override void MouseUp(object sender, MouseEventArgs e)
         {
-            base.MouseUp(sender, e);
+            if (e.Button != MouseButtons.Left) return;
 
             if (_selectedHandle != null)
             {
