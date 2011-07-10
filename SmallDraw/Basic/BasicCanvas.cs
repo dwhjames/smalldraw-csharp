@@ -41,21 +41,40 @@ namespace SmallDraw.Basic
 
         #region overriding System.Windows.Forms.Control
 
+        /// <summary>
+        /// Override the mouse leave event handler to refresh the canvas
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnMouseLeave(System.EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            this.Invalidate();
+        }
+
+        /// <summary>
+        /// Paint the background of the control
+        /// </summary>
+        /// <param name="e">the paint event data</param>
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             e.Graphics.FillRectangle(Brushes.White, e.ClipRectangle);
         }
 
+        /// <summary>
+        /// Paint the figures onto the canvas
+        /// </summary>
+        /// <param name="e">the paint event data</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
             var g = e.Graphics;
+            var clip = e.ClipRectangle;
 
             // g.FillRectangle(Brushes.White, this.Bounds);
 
             // shade the selection rectangle under all figures
-            if (!_selectionRectangle.IsEmpty)
+            if (!_selectionRectangle.IsEmpty && _selectionRectangle.IntersectsWith(clip))
             {
                 g.FillRectangle(Brushes.WhiteSmoke, _selectionRectangle);
             }
@@ -63,18 +82,21 @@ namespace SmallDraw.Basic
             // paint each figure, with handles if selected
             foreach (var f in _figures)
             {
-                f.Paint(g);
-                if (f.Selected)
+                if (f.ExpandedBounds.IntersectsWith(clip))
                 {
-                    foreach (var h in f.Handles)
+                    f.Paint(g);
+                    if (f.Selected)
                     {
-                        h.Paint(g);
+                        foreach (var h in f.Handles)
+                        {
+                            h.Paint(g);
+                        }
                     }
                 }
             }
 
             // now redraw the outline of the selection rectangle, on top of all figures
-            if (!_selectionRectangle.IsEmpty)
+            if (!_selectionRectangle.IsEmpty && _selectionRectangle.IntersectsWith(clip))
             {
                 g.DrawRectangle(Pens.Red, _selectionRectangle);
             }
@@ -214,9 +236,13 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// Repaint a region of the canvas
+        /// </summary>
+        /// <param name="r">the region to repaint</param>
         public void Repaint(Rectangle r)
         {
-            this.Invalidate();
+            this.Invalidate(r);
         }
         #endregion
     }

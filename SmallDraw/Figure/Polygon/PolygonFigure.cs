@@ -30,20 +30,31 @@ namespace SmallDraw.Figure.Polygon
             AddPoint(start);
         }
 
+        /// <summary>
+        /// Initialize the list of handles for the polygon figure
+        /// </summary>
         protected override void InitializeHandles()
         {
             _handles = new List<IHandle>();
         }
         #endregion
 
+        /// <summary>
+        /// Add a point to the polygon
+        /// </summary>
+        /// <param name="p"></param>
         public void AddPoint(Point p)
         {
             var pl = new Locator.PointLocator(p);
             ((IObservable)pl).AddObserver(this);
             _locators.Add(pl);
+            _handles.Add(new Basic.LocatorHandle(pl, _canvas));
             RecomputeShapeFromBounds();
         }
 
+        /// <summary>
+        /// Set the location of the last point in the polygon
+        /// </summary>
         public Point LastPoint
         {
             set
@@ -52,6 +63,9 @@ namespace SmallDraw.Figure.Polygon
             }
         }
 
+        /// <summary>
+        /// Get the number of points in the polygon
+        /// </summary>
         public int CountPoints
         {
             get
@@ -61,19 +75,9 @@ namespace SmallDraw.Figure.Polygon
         }
 
         #region overriding BasicFigure
-        public override IEnumerable<IHandle> Handles
-        {
-            get
-            {
-                _handles = new List<IHandle>(_locators.Count);
-                foreach (var l in _locators)
-                {
-                    _handles.Add(new Basic.LocatorHandle(l, _canvas));
-                }
-                return _handles;
-            }
-        }
-
+        /// <summary>
+        /// Get a locator for the center of this figure
+        /// </summary>
         public override ILocator CenterLocator
         {
             get
@@ -82,20 +86,29 @@ namespace SmallDraw.Figure.Polygon
             }
         }
 
+        /// <summary>
+        /// Get the bounds of the polygon figure
+        /// </summary>
         public override System.Drawing.Rectangle Bounds
         {
             get
             {
-                var bounds = new System.Drawing.Rectangle(_locators[0].Location, Size.Empty);
+                // start with a unit rectangle for the first point
+                var bounds = new System.Drawing.Rectangle(_locators[0].Location, new Size(1, 1));
                 foreach (var l in _locators)
                 {
-                    bounds = Util.Geometry.ExtendRectangleWithPoint(bounds, l.Location);
+                    // grow the bounds with unit rectangles for each point in the polygon
+                    bounds = System.Drawing.Rectangle.Union(bounds, new System.Drawing.Rectangle(l.Location, new Size(1, 1)));
                 }
                 return bounds;
             }
         }
 
-        public override void Paint(System.Drawing.Graphics g)
+        /// <summary>
+        /// Draw the polygon
+        /// </summary>
+        /// <param name="g">the graphics context</param>
+        public override void Paint(Graphics g)
         {
             var poly = new Point[_locators.Count];
             for (int i = 0; i < _locators.Count; i++)
@@ -105,6 +118,11 @@ namespace SmallDraw.Figure.Polygon
             g.DrawPolygon(Pens.Black, poly);
         }
 
+        /// <summary>
+        /// Test if a point touches the polygon
+        /// </summary>
+        /// <param name="p">the point to test</param>
+        /// <returns>true if the point touches any of the edges</returns>
         public override bool Touches(Point p)
         {
             int i = 0;
@@ -118,6 +136,10 @@ namespace SmallDraw.Figure.Polygon
             return i < CountPoints; // if i < CountPoints then the loop stopped when a line was touched
         }
 
+        /// <summary>
+        /// Translate the polygon by a width and height
+        /// </summary>
+        /// <param name="s">the translation dimensions</param>
         public override void Translate(Size s)
         {
             var oldBounds = this.ExpandedBounds;
@@ -130,6 +152,9 @@ namespace SmallDraw.Figure.Polygon
             _canvas.Repaint(System.Drawing.Rectangle.Union(this.ExpandedBounds, oldBounds));
         }
 
+        /// <summary>
+        /// Get and set the location of the polygon
+        /// </summary>
         public override Point Location
         {
             get
@@ -142,6 +167,9 @@ namespace SmallDraw.Figure.Polygon
             }
         }
 
+        /// <summary>
+        /// Get and set the size of the polygon
+        /// </summary>
         public override Size Size
         {
             get
@@ -168,6 +196,10 @@ namespace SmallDraw.Figure.Polygon
         }
         #endregion
 
+        /// <summary>
+        /// Generate a string representation of the polygon
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             var builder = new StringBuilder("Polygon ");
@@ -179,6 +211,9 @@ namespace SmallDraw.Figure.Polygon
         }
 
         #region implmentation of IObserver
+        /// <summary>
+        /// Update the polygon when notified of a change
+        /// </summary>
         void IObserver.Update()
         {
             RecomputeShapeFromBounds();

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SmallDraw.Figure.Line
 {
+    /// <summary>
+    /// A figure for lines
+    /// </summary>
     public class LineFigure : Basic.BasicFigure, IObserver
     {
         #region fields
@@ -26,11 +29,18 @@ namespace SmallDraw.Figure.Line
         #endregion
 
         #region overriding BasicFigure
+        /// <summary>
+        /// Draw the line
+        /// </summary>
+        /// <param name="g">the graphics context</param>
         public override void Paint(Graphics g)
         {
             g.DrawLine(Pens.Black, _startLocator.Location, _endLocator.Location);
         }
 
+        /// <summary>
+        /// Initialize the handles for the figure
+        /// </summary>
         protected override void InitializeHandles()
         {
             _startLocator = new Locator.PointLocator(_location);
@@ -44,6 +54,9 @@ namespace SmallDraw.Figure.Line
             _handles.Add(new Basic.LocatorHandle(_endLocator, _canvas));
         }
 
+        /// <summary>
+        /// Get the bounds for the line figure
+        /// </summary>
         public override System.Drawing.Rectangle Bounds
         {
             get
@@ -52,6 +65,9 @@ namespace SmallDraw.Figure.Line
             }
         }
 
+        /// <summary>
+        /// Get and set the location of the line
+        /// </summary>
         public override Point Location
         {
             get
@@ -64,6 +80,10 @@ namespace SmallDraw.Figure.Line
             }
         }
 
+        /// <summary>
+        /// Get and the size of the line.
+        /// Setting the size is not supported.
+        /// </summary>
         public override Size Size
         {
             get
@@ -76,6 +96,10 @@ namespace SmallDraw.Figure.Line
             }
         }
 
+        /// <summary>
+        /// Translate the line by a width and a height
+        /// </summary>
+        /// <param name="s">the translation dimensions</param>
         public override void Translate(Size s)
         {
             var oldBounds = this.ExpandedBounds;
@@ -86,6 +110,11 @@ namespace SmallDraw.Figure.Line
             _canvas.Repaint(System.Drawing.Rectangle.Union(oldBounds, this.ExpandedBounds));
         }
 
+        /// <summary>
+        /// Test if a given point touches the line
+        /// </summary>
+        /// <param name="p">the point to test</param>
+        /// <returns>true if the point touches the line</returns>
         public override bool Touches(Point p)
         {
             return Util.Geometry.LinePointIntersect(this.Start, this.End, p);
@@ -93,6 +122,9 @@ namespace SmallDraw.Figure.Line
         #endregion
 
         #region implementation of IObserver
+        /// <summary>
+        /// Update the line figure when notified of a change
+        /// </summary>
         void IObserver.Update()
         {
             NotifyObservers();
@@ -100,6 +132,10 @@ namespace SmallDraw.Figure.Line
         }
         #endregion
 
+        /// <summary>
+        /// Generate a string representation of the line
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             var builder = new StringBuilder("Line ");
@@ -108,7 +144,7 @@ namespace SmallDraw.Figure.Line
         }
 
         /// <summary>
-        /// Get and set the starting location of the line
+        /// Get and set the start location of the line
         /// </summary>
         public Point Start
         {
@@ -124,6 +160,9 @@ namespace SmallDraw.Figure.Line
             }
         }
 
+        /// <summary>
+        /// Get and set the end location of the line
+        /// </summary>
         public Point End
         {
             get
@@ -138,6 +177,9 @@ namespace SmallDraw.Figure.Line
             }
         }
 
+        /// <summary>
+        /// Get the length of the line
+        /// </summary>
         public int Length
         {
             get

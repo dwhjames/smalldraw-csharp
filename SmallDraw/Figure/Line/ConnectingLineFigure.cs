@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Text;
 
 namespace SmallDraw.Figure.Line
 {
@@ -38,26 +39,31 @@ namespace SmallDraw.Figure.Line
         #endregion
 
         #region overriding implementation of BasicFigure
+        /// <summary>
+        /// Draw the connecting line figure
+        /// </summary>
+        /// <param name="g"></param>
         public override void Paint(Graphics g)
         {
             g.DrawLine(Pens.Black, _startFigure.CenterLocator.Location, _endLocator.Location);
         }
 
+        /// <summary>
+        /// Get the bounds for the connecting line figure
+        /// </summary>
         public override System.Drawing.Rectangle Bounds
         {
             get
             {
-                var startPoint = _startFigure.CenterLocator.Location;
-                var endPoint = _endLocator.Location;
-                var rect = new System.Drawing.Rectangle(Math.Min(startPoint.X, endPoint.X),
-                                                        Math.Min(startPoint.X, endPoint.Y),
-                                                        Math.Abs(startPoint.X - endPoint.X),
-                                                        Math.Abs(startPoint.Y - endPoint.Y));
-                rect.Inflate(1, 1);
-                return rect;
+                return Util.Geometry.RectangleFromPoints(_startFigure.CenterLocator.Location, _endLocator.Location);
             }
         }
 
+        /// <summary>
+        /// Test if a given point touches the line
+        /// </summary>
+        /// <param name="p">the point to test</param>
+        /// <returns>true if the point touches the line</returns>
         public override bool Touches(Point p)
         {
             if (_endFigure == null)
@@ -66,6 +72,10 @@ namespace SmallDraw.Figure.Line
                 return Util.Geometry.LinePointIntersect(_startFigure.CenterLocator.Location, _endFigure.CenterLocator.Location, p);
         }
 
+        /// <summary>
+        /// Get the location of the line.
+        /// Setting the location is not supported.
+        /// </summary>
         public override Point Location
         {
             get
@@ -74,10 +84,14 @@ namespace SmallDraw.Figure.Line
             }
             set
             {
-                throw new NotSupportedException();
+                throw new NotSupportedException("Cannot directly set location of connecting line figure");
             }
         }
 
+        /// <summary>
+        /// Get the size of the line.
+        /// Setting the size is not supported.
+        /// </summary>
         public override Size Size
         {
             get
@@ -88,10 +102,13 @@ namespace SmallDraw.Figure.Line
             }
             set
             {
-                throw new NotSupportedException();
+                throw new NotSupportedException("Cannot directly set size of connecting line figure");
             }
         }
 
+        /// <summary>
+        /// Get an enumeration of the handles for the figure
+        /// </summary>
         public override IEnumerable<IHandle> Handles
         {
             get
@@ -100,9 +117,18 @@ namespace SmallDraw.Figure.Line
             }
         }
 
+        /// <summary>
+        /// A connecting line figure cannot be translated.
+        /// </summary>
+        /// <param name="s">the translation dimensions</param>
         public override void Translate(Size s)
-        { }
+        {
+            throw new NotSupportedException("Cannot directly translate a connecting line figure");
+        }
 
+        /// <summary>
+        /// Initialize the handles for the figure
+        /// </summary>
         protected override void InitializeHandles()
         {
             _handles = new List<IHandle>();
@@ -122,15 +148,21 @@ namespace SmallDraw.Figure.Line
             {
                 _endLocator = _endFigure.CenterLocator;
             }
-            NotifyObservers();
             var newBounds = this.ExpandedBounds;
+            NotifyObservers();
             _canvas.Repaint(System.Drawing.Rectangle.Union(oldBounds, newBounds));
         }
         #endregion
 
+        /// <summary>
+        /// Generate a string representation of a connecting line figure
+        /// </summary>
+        /// <returns>a string representation</returns>
         public override string ToString()
         {
-            return "ConnectingLineFigure (" + _startFigure.CenterLocator.X + "," + _startFigure.CenterLocator.Y + ")-(" + _endLocator.X + "," + _endLocator.Y + ")";
+            var builder = new StringBuilder("ConnectingLineFigure ");
+            builder.Append('(').Append(_startFigure.CenterLocator.X).Append(',').Append(_startFigure.CenterLocator.Y).Append(")-(").Append(_endLocator.X).Append(',').Append(_endLocator.Y).Append(')');
+            return builder.ToString();    
         }
 
         /// <summary>

@@ -9,13 +9,22 @@ using System.Windows.Forms;
 
 namespace SmallDraw.Figure.Polygon
 {
+    /// <summary>
+    /// An extension of the ShapeControl user control
+    /// </summary>
     public partial class NgonControl : Basic.ShapeControl
     {
+        /// <summary>
+        /// Initialize an ngon control
+        /// </summary>
         public NgonControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Set the list of polygon sizes
+        /// </summary>
         public object[] SidesList
         {
             set
@@ -25,6 +34,11 @@ namespace SmallDraw.Figure.Polygon
             }
         }
 
+        /// <summary>
+        /// A handler for selection change events from the combo box
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the event data</param>
         private void _comboBox_SelectionChanged(object sender, EventArgs e)
         {
             var tool = this.ShapeTool as PolygonTool;

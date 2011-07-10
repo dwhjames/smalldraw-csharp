@@ -1,5 +1,4 @@
-﻿
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace SmallDraw
 {
@@ -15,13 +14,13 @@ namespace SmallDraw
         void Paint(Graphics g);
 
         /// <summary>
-        /// The boundary area of the handle,
+        /// Get the boundary area of the handle,
         /// used for checking when selected.
         /// </summary>
         Rectangle Bounds { get; }
 
         /// <summary>
-        /// The selection status of the handle.
+        /// Get and set the selection status of the handle.
         /// </summary>
         bool Selected { get; set; }
 
@@ -39,7 +38,7 @@ namespace SmallDraw
         ILocator Locator { get; }
 
         /// <summary>
-        /// The location in the canvas that the handle occupies.
+        /// Get the location in the canvas that the handle occupies.
         /// Setting involves calling the same method on the locator.
         /// </summary>
         Point Location { get; set; }

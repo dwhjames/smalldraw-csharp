@@ -1,9 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace SmallDraw.Util
 {
+    /// <summary>
+    /// A collection of static helper methods that provide geometric functions
+    /// </summary>
     public static class Geometry
     {
         /// <summary>
@@ -108,46 +110,18 @@ namespace SmallDraw.Util
             return x * w - z * y;
         }
 
+        /// <summary>
+        /// Create the minimal rectangle that encloses two points
+        /// </summary>
+        /// <param name="a">the first point</param>
+        /// <param name="b">the second point</param>
+        /// <returns></returns>
         public static Rectangle RectangleFromPoints(Point a, Point b)
         {
             return new Rectangle(Math.Min(a.X, b.X),
                                  Math.Min(a.Y, b.Y),
                                  Math.Abs(a.X - b.X),
                                  Math.Abs(a.Y - b.Y));
-        }
-
-        public static Rectangle ExtendRectangleWithPoint(Rectangle r, Point p)
-        {
-            if (r.Contains(p))
-            {
-                return r;
-            }
-            else
-            {
-                var location = Point.Empty;
-                var size = Size.Empty;
-                if (p.X >= r.X)
-                {
-                    location.X = r.X;
-                    size.Width = Math.Max(r.Width, p.X - r.X);
-                }
-                else
-                {
-                    location.X = p.X;
-                    size.Width = r.Width + (r.X - p.X);
-                }
-                if (p.Y >= r.Y)
-                {
-                    location.Y = r.Y;
-                    size.Height = Math.Max(r.Height, p.Y - r.Y);
-                }
-                else
-                {
-                    location.Y = r.Y;
-                    size.Height = r.Height + (r.Y - p.Y);
-                }
-                return new Rectangle(location, size);
-            }
         }
     }
 }

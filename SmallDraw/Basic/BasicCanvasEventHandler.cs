@@ -51,12 +51,27 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// A stub handler for mouse down events
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the mouse event data</param>
         public virtual void MouseDown(object sender, MouseEventArgs e)
         { }
 
+        /// <summary>
+        /// A stub handler for mouse move events
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the mouse event data</param>
         public virtual void MouseMove(object sender, MouseEventArgs e)
         { }
 
+        /// <summary>
+        /// A stub handler for mouse up events
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the mouse event data</param>
         public virtual void MouseUp(object sender, MouseEventArgs e)
         { }
         #endregion

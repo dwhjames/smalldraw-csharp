@@ -53,6 +53,9 @@ namespace SmallDraw.Basic
         #endregion
 
         #region overriding implementation of BasicCanvasEventHandler
+        /// <summary>
+        /// Get and set the activation status of the selection tool
+        /// </summary>
         public override bool Active
         {
             get
@@ -66,6 +69,11 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// A handler for mouse down events
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the mouse event data</param>
         public override void MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
@@ -102,6 +110,11 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// A handler for mouse move events
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the mouse event data</param>
         public override void MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
@@ -124,6 +137,11 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// A handler for mouse up events
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the mouse event data</param>
         public override void MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;

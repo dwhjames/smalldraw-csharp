@@ -41,6 +41,11 @@ namespace SmallDraw.Basic
         protected abstract F NewFigureAt(Point p);
 
         #region overriding of BasicCanvasEventHandler
+        /// <summary>
+        /// A default handler for mouse down events
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the mouse event data</param>
         public override void MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
@@ -50,6 +55,11 @@ namespace SmallDraw.Basic
             _canvas.AddFigure(_newFigure);
         }
 
+        /// <summary>
+        /// A default handler for mouse move events
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the mouse event data</param>
         public override void MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
@@ -61,6 +71,11 @@ namespace SmallDraw.Basic
             _canvas.Repaint(Rectangle.Inflate(oldBounds, 1, 1));
         }
 
+        /// <summary>
+        /// A default handler for mouse up events
+        /// </summary>
+        /// <param name="sender">the object that generated the event</param>
+        /// <param name="e">the mouse event data</param>
         public override void MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;

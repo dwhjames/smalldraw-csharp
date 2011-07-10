@@ -1,5 +1,4 @@
-﻿
-using System.Drawing;
+﻿using System.Drawing;
 using System.Collections.Generic;
 
 namespace SmallDraw
@@ -18,12 +17,12 @@ namespace SmallDraw
         void Paint(Graphics g);
 
         /// <summary>
-        /// The smallest rectangle containing the figure
+        /// Get the smallest rectangle containing the figure
         /// </summary>
         Rectangle Bounds { get; }
 
         /// <summary>
-        /// The smallest rectangle containing the figure that also
+        /// Get the smallest rectangle containing the figure that also
         /// incloses any handles, assuming they are centered along
         /// the edges of the smallest rectangle enclosing the figure itself
         /// </summary>
@@ -35,12 +34,12 @@ namespace SmallDraw
         IEnumerable<IHandle> Handles { get; }
 
         /// <summary>
-        /// The locator object that locates the center of the figure
+        /// Get the locator object that locates the center of the figure
         /// </summary>
         ILocator CenterLocator { get; }
 
         /// <summary>
-        /// The selection status of the figure
+        /// Get and set the selection status of the figure
         /// </summary>
         bool Selected { get; set; }
 
@@ -52,7 +51,7 @@ namespace SmallDraw
         bool Touches(Point p);
 
         /// <summary>
-        /// The position of the figure
+        /// Get and set the position of the figure
         /// </summary>
         Point Location { get; set; }
 

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Windows.Forms;
 
 namespace SmallDraw
 {
@@ -10,7 +8,7 @@ namespace SmallDraw
         [STAThread]
         static void Main()
         {
-            System.Windows.Forms.Application.Run(new ShapeForm());
+            Application.Run(new ShapeForm());
         }
     }
 }

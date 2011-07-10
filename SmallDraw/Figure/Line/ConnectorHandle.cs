@@ -43,12 +43,20 @@ namespace SmallDraw.Figure.Line
         #endregion
 
         #region overriding of LocatorHandle
+        /// <summary>
+        /// Draw the connector handle.
+        /// Red if selected, black if not.
+        /// </summary>
+        /// <param name="g">the graphics context</param>
         public override void Paint(Graphics g)
         {
             var b = _selected ? Brushes.Red : Brushes.Black;
             g.FillEllipse(b, _locator.X - WIDTH / 2, _locator.Y - HEIGHT / 2, WIDTH, HEIGHT);
         }
 
+        /// <summary>
+        /// Get and set the location of the handle
+        /// </summary>
         public override Point Location
         {
             get

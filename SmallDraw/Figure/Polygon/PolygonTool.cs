@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace SmallDraw.Figure.Polygon
 {
     /// <summary>
-    /// 
+    /// A construction tool for polygons
     /// </summary>
     public class PolygonTool : Basic.ConstructionTool<PolygonFigure>
     {
@@ -18,10 +18,10 @@ namespace SmallDraw.Figure.Polygon
 
         #region constructors
         /// <summary>
-        /// 
+        /// Initialize a polygon figure
         /// </summary>
-        /// <param name="canvas"></param>
-        /// <param name="numPoints"></param>
+        /// <param name="canvas">the associated canvas</param>
+        /// <param name="numPoints">the number of points</param>
         public PolygonTool(ICanvas canvas, int numPoints)
             : base(canvas)
         {
@@ -41,11 +41,21 @@ namespace SmallDraw.Figure.Polygon
         }
 
         #region overiding the ConstructionTool
+        /// <summary>
+        /// Create a new polygon figure at a given location
+        /// </summary>
+        /// <param name="p">the location for the figure</param>
+        /// <returns>a polygon figure</returns>
         protected override PolygonFigure NewFigureAt(Point p)
         {
             return new PolygonFigure(_canvas, p);
         }
 
+        /// <summary>
+        /// The handler for mouse down events
+        /// </summary>
+        /// <param name="sender">the object that raised the event</param>
+        /// <param name="e">the mouse data</param>
         public override void MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left)
@@ -70,6 +80,11 @@ namespace SmallDraw.Figure.Polygon
             }
         }
 
+        /// <summary>
+        /// The handler for mouse move events
+        /// </summary>
+        /// <param name="sender">the object that raised the event</param>
+        /// <param name="e">the mouse data</param>
         public override void MouseMove(object sender, MouseEventArgs e)
         {
             if (_newFigure != null)
@@ -80,6 +95,11 @@ namespace SmallDraw.Figure.Polygon
             }
         }
 
+        /// <summary>
+        /// The handler for mouse up events
+        /// </summary>
+        /// <param name="sender">the object that raised the event</param>
+        /// <param name="e">the mouse data</param>
         public override void MouseUp(object sender, MouseEventArgs e)
         {
             // don't set _newFigure to null - we still need to hold on to it

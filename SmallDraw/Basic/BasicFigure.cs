@@ -96,6 +96,9 @@ namespace SmallDraw.Basic
         public abstract void Paint(Graphics g);
 
         #region implementation of IFigure
+        /// <summary>
+        /// Get the bounds of the figure
+        /// </summary>
         public virtual Rectangle Bounds
         {
             get
@@ -104,26 +107,38 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// Get the bounds that enclose the figure and any handles
+        /// </summary>
         public Rectangle ExpandedBounds
         {
             get
             {
                 var rect = this.Bounds;
-                rect.Inflate(LocatorHandle.WIDTH / 2, LocatorHandle.HEIGHT / 2);
+                rect.Inflate((LocatorHandle.WIDTH / 2) + 1, (LocatorHandle.HEIGHT / 2) + 1);
                 return rect;
             }
         }
 
+        /// <summary>
+        /// Get an enumeration of the handles for the figure
+        /// </summary>
         public virtual IEnumerable<IHandle> Handles
         {
             get { return _handles; }
         }
 
+        /// <summary>
+        /// Get a locator for the center of the figure
+        /// </summary>
         public virtual ILocator CenterLocator
         {
             get { return _handles[0].Locator; }
         }
 
+        /// <summary>
+        /// Get and set the selection status of the figure
+        /// </summary>
         public bool Selected
         {
             get
@@ -137,11 +152,19 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// Test if a given point touches the figure
+        /// </summary>
+        /// <param name="p">the point to test</param>
+        /// <returns>true if the point touches the figure</returns>
         public virtual bool Touches(Point p)
         {
             return false;
         }
 
+        /// <summary>
+        /// Get and set the location of the figure
+        /// </summary>
         public virtual Point Location
         {
             get
@@ -158,11 +181,18 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// Translate the figure by a width and a height
+        /// </summary>
+        /// <param name="s">the translation dimensions</param>
         public virtual void Translate(Size s)
         {
             this.Location = Point.Add(this.Location, s);
         }
 
+        /// <summary>
+        /// Get and set the size of the figure
+        /// </summary>
         public virtual Size Size
         {
             get
@@ -179,6 +209,11 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// Get a locator for this figure, relative to a given point
+        /// </summary>
+        /// <param name="p">a point</param>
+        /// <returns>a locator</returns>
         public ILocator RelativeLocator(Point p)
         {
             return new Locator.ProportionalLocator(this,
@@ -192,6 +227,10 @@ namespace SmallDraw.Basic
         #endregion
 
         #region implementation of IObservable
+        /// <summary>
+        /// Add an observer to the set of observers on this figure
+        /// </summary>
+        /// <param name="obs">the observer to add</param>
         void IObservable.AddObserver(IObserver obs)
         {
             _observers.Add(obs);
@@ -209,6 +248,12 @@ namespace SmallDraw.Basic
         }
         #endregion
 
+        /// <summary>
+        /// A helper method to keep the dimensions of a figure in sync.
+        /// If a subclass overrides the bounds property in such a way
+        /// that it no longer depends on _location and _size, it should
+        /// called this method to update _location and _size
+        /// </summary>
         protected void RecomputeShapeFromBounds()
         {
             var newBounds = this.Bounds;

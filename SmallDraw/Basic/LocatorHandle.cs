@@ -55,11 +55,17 @@ namespace SmallDraw.Basic
             g.DrawRectangle(p, this.Bounds);
         }
 
+        /// <summary>
+        /// Get the bounds of the handle
+        /// </summary>
         public Rectangle Bounds
         {
             get { return new Rectangle(_locator.X - WIDTH / 2, _locator.Y - HEIGHT / 2, WIDTH, HEIGHT); }
         }
 
+        /// <summary>
+        /// Get and set the selection status of the handle
+        /// </summary>
         public virtual bool Selected
         {
             get
@@ -75,16 +81,27 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// Test if a given point touches the handle
+        /// </summary>
+        /// <param name="p">the point to test</param>
+        /// <returns>true if the point touches the handle</returns>
         public bool Touches(Point p)
         {
             return Math.Abs(_locator.X - p.X) <= WIDTH / 2 && Math.Abs(_locator.Y - p.Y) <= HEIGHT / 2;
         }
 
+        /// <summary>
+        /// Get the underlying locator for this handle
+        /// </summary>
         public ILocator Locator
         {
             get { return _locator; }
         }
 
+        /// <summary>
+        /// Get and set the location of the handle.
+        /// </summary>
         public virtual Point Location
         {
             get
@@ -102,6 +119,10 @@ namespace SmallDraw.Basic
             }
         }
 
+        /// <summary>
+        /// Translate the handle by a width and height
+        /// </summary>
+        /// <param name="s">the translation dimensions</param>
         public void Translate(Size s)
         {
             var oldBounds = this.Bounds;
