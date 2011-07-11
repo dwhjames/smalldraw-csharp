@@ -105,7 +105,6 @@ namespace SmallDraw.Figure.Line
             var oldBounds = this.ExpandedBounds;
             _startLocator.Translate(s);
             _endLocator.Translate(s);
-            _location += s;
             NotifyObservers();
             _canvas.Repaint(System.Drawing.Rectangle.Union(oldBounds, this.ExpandedBounds));
         }
@@ -127,6 +126,7 @@ namespace SmallDraw.Figure.Line
         /// </summary>
         void IObserver.Update()
         {
+            RecomputeShapeFromBounds();
             NotifyObservers();
             _canvas.Repaint(this.ExpandedBounds);
         }
