@@ -29,14 +29,6 @@ namespace SmallDraw.Figure.Polygon
             _locators = new List<ILocator>();
             AddPoint(start);
         }
-
-        /// <summary>
-        /// Initialize the list of handles for the polygon figure
-        /// </summary>
-        protected override void InitializeHandles()
-        {
-            _handles = new List<IHandle>();
-        }
         #endregion
 
         /// <summary>

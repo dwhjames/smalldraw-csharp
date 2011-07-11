@@ -24,8 +24,17 @@ namespace SmallDraw.Figure.Line
         /// <param name="canvas">the associated canvas</param>
         /// <param name="start">the starting point</param>
         public LineFigure(ICanvas canvas, Point start)
-            : base(canvas, start, new Size(1, 1))
-        { }
+            : base(canvas, start, Size.Empty)
+        {
+            _startLocator = new Locator.PointLocator(_location);
+            ((IObservable)_startLocator).AddObserver(this);
+            _endLocator = new Locator.PointLocator(_location);
+            ((IObservable)_endLocator).AddObserver(this);
+
+            _handles.Add(new Basic.LocatorHandle(new Locator.ProportionalLocator(this), _canvas));
+            _handles.Add(new Basic.LocatorHandle(_startLocator, _canvas));
+            _handles.Add(new Basic.LocatorHandle(_endLocator, _canvas));
+        }
         #endregion
 
         #region overriding BasicFigure
@@ -36,22 +45,6 @@ namespace SmallDraw.Figure.Line
         public override void Paint(Graphics g)
         {
             g.DrawLine(Pens.Black, _startLocator.Location, _endLocator.Location);
-        }
-
-        /// <summary>
-        /// Initialize the handles for the figure
-        /// </summary>
-        protected override void InitializeHandles()
-        {
-            _startLocator = new Locator.PointLocator(_location);
-            ((IObservable)_startLocator).AddObserver(this);
-            _endLocator = new Locator.PointLocator(_location);
-            ((IObservable)_endLocator).AddObserver(this);
-
-            _handles = new List<IHandle>();
-            _handles.Add(new Basic.LocatorHandle(new Locator.ProportionalLocator(this), _canvas));
-            _handles.Add(new Basic.LocatorHandle(_startLocator, _canvas));
-            _handles.Add(new Basic.LocatorHandle(_endLocator, _canvas));
         }
 
         /// <summary>

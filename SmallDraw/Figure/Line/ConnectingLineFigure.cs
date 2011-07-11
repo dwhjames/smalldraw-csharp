@@ -30,8 +30,12 @@ namespace SmallDraw.Figure.Line
         /// <param name="start">the starting figure</param>
         /// <param name="end">the end point</param>
         public ConnectingLineFigure(ICanvas canvas, IFigure start, Point end)
-            : base(canvas, start.Location.X, start.Location.Y, 0, 0)
+            : base(canvas, start.Location, Size.Empty)
         {
+            // no handles for a connecting line figure
+            // if an implementation of Translate is provided, the use the following handle
+            // _handles.Add(new Basic.LocatorHandle(new Locator.ProportionalLocator(this), _canvas));
+
             this._startFigure = start;
             ((IObservable)this._startFigure).AddObserver(this);
             this._endLocator = new Locator.PointLocator(end);
@@ -107,32 +111,12 @@ namespace SmallDraw.Figure.Line
         }
 
         /// <summary>
-        /// Get an enumeration of the handles for the figure
-        /// </summary>
-        public override IEnumerable<IHandle> Handles
-        {
-            get
-            {
-                return new List<IHandle>();
-            }
-        }
-
-        /// <summary>
         /// A connecting line figure cannot be translated.
         /// </summary>
         /// <param name="s">the translation dimensions</param>
         public override void Translate(Size s)
         {
-            throw new NotSupportedException("Cannot directly translate a connecting line figure");
-        }
-
-        /// <summary>
-        /// Initialize the handles for the figure
-        /// </summary>
-        protected override void InitializeHandles()
-        {
-            _handles = new List<IHandle>();
-            _handles.Add(new Basic.LocatorHandle(new Locator.ProportionalLocator(this), _canvas));
+            // empty implementation
         }
         #endregion
 

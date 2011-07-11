@@ -51,7 +51,7 @@ namespace SmallDraw.Basic
             this._canvas = canvas;
             this._location = location;
             this._size = size;
-            this.InitializeHandles();
+            this._handles = new List<IHandle>();
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace SmallDraw.Basic
         /// <summary>
         /// Get an enumeration of the handles for the figure
         /// </summary>
-        public virtual IEnumerable<IHandle> Handles
+        public IEnumerable<IHandle> Handles
         {
             get { return _handles; }
         }

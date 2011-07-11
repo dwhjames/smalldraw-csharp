@@ -18,14 +18,7 @@ namespace SmallDraw.Figure.Rectangle
         /// <param name="size">the size of the rectangle</param>
         public RectangleFigure(ICanvas canvas, Point location, Size size)
             : base(canvas, location, size)
-        { }
-
-        /// <summary>
-        /// Initialize the list of handles for the retangle figure
-        /// </summary>
-        protected override void InitializeHandles()
         {
-            _handles = new List<IHandle>();
             _handles.Add(new Basic.LocatorHandle(new Locator.ProportionalLocator(this), _canvas));
             _handles.Add(new Line.ConnectorHandle(new Locator.ProportionalLocator(this, 0.33f, 0.33f), _canvas, this));
             _handles.Add(new Basic.LocatorHandle(new Locator.TopLeftLocator(this), _canvas));
