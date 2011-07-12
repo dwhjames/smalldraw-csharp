@@ -74,19 +74,6 @@ namespace SmallDraw.Basic
         public BasicFigure(ICanvas canvas, Rectangle bounds)
             : this(canvas, bounds.Location, bounds.Size)
         { }
-
-        /// <summary>
-        /// Initialize the handles list, this is called by the constructor and 
-        /// is expected to be overridden in subclasses that require different handles.
-        /// The default handles provided are a LocatorHandle centered on the figure
-        /// and a ConnectorHandle near the top left corner.
-        /// </summary>
-        protected virtual void InitializeHandles()
-        {
-            _handles = new List<IHandle>();
-            _handles.Add(new LocatorHandle(new Locator.ProportionalLocator(this), _canvas));
-            _handles.Add(new Figure.Line.ConnectorHandle(new Locator.ProportionalLocator(this), _canvas, this));
-        }
         #endregion
 
         /// <summary>
