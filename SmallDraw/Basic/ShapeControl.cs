@@ -64,7 +64,7 @@ namespace SmallDraw.Basic
         /// </summary>
         /// <param name="sender">the object that generated the event</param>
         /// <param name="e">the event data</param>
-        private void _button_Click(object sender, EventArgs e)
+        protected virtual void ButtonClick(object sender, EventArgs e)
         {
             if (_canvas == null) throw new Exception("A canvas was not set for a ShapeControl");
             if (_handler == null) throw new Exception("A canvas handler was not set for a ShapeControl");

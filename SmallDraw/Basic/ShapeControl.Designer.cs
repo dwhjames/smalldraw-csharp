@@ -39,7 +39,7 @@
             this._button.Size = new System.Drawing.Size(100, 30);
             this._button.TabIndex = 0;
             this._button.UseVisualStyleBackColor = true;
-            this._button.Click += new System.EventHandler(this._button_Click);
+            this._button.Click += new System.EventHandler(this.ButtonClick);
             // 
             // ShapeControl
             // 
