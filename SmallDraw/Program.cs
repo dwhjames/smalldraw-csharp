@@ -8,7 +8,7 @@ namespace SmallDraw
         [STAThread]
         static void Main()
         {
-            Application.Run(new ShapeForm());
+            Application.Run(new ShapeDraw());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SmallDraw
 {
-    partial class ShapeForm
+    partial class ShapeDraw
     {
         /// <summary>
         /// Required designer variable.

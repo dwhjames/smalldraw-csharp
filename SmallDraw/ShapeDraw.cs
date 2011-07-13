@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace SmallDraw
 {
-    public partial class ShapeForm : Form
+    public partial class ShapeDraw : Form
     {
-        public ShapeForm()
+        public ShapeDraw()
         {
             InitializeComponent();
 
