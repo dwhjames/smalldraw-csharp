@@ -30,8 +30,7 @@ namespace SmallDraw.Figure.Line
             ((IObservable)_startLocator).AddObserver(this);
             _endLocator = new Locator.PointLocator(_location);
             ((IObservable)_endLocator).AddObserver(this);
-
-            _handles.Add(new Basic.LocatorHandle(new Locator.ProportionalLocator(this), _canvas));
+            
             _handles.Add(new Basic.LocatorHandle(_startLocator, _canvas));
             _handles.Add(new Basic.LocatorHandle(_endLocator, _canvas));
         }

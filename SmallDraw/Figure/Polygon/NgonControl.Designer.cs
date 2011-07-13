@@ -35,8 +35,8 @@
             // 
             this._comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBox.FormattingEnabled = true;
-            this._comboBox.Location = new System.Drawing.Point(123, 16);
-            this._comboBox.Margin = new System.Windows.Forms.Padding(10);
+            this._comboBox.Location = new System.Drawing.Point(30, 50);
+            this._comboBox.Margin = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this._comboBox.Name = "_comboBox";
             this._comboBox.Size = new System.Drawing.Size(60, 21);
             this._comboBox.TabIndex = 1;
@@ -48,7 +48,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._comboBox);
             this.Name = "NgonControl";
-            this.Size = new System.Drawing.Size(200, 50);
+            this.Size = new System.Drawing.Size(120, 80);
             this.Controls.SetChildIndex(this._comboBox, 0);
             this.ResumeLayout(false);
 

@@ -33,6 +33,7 @@ namespace SmallDraw.Figure.Line
             : base(canvas, start.Location, Size.Empty)
         {
             // no handles for a connecting line figure
+            _handles.Clear();
             // if an implementation of Translate is provided, the use the following handle
             // _handles.Add(new Basic.LocatorHandle(new Locator.ProportionalLocator(this), _canvas));
 

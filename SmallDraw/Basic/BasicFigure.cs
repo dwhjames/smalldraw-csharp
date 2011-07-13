@@ -52,6 +52,8 @@ namespace SmallDraw.Basic
             this._location = location;
             this._size = size;
             this._handles = new List<IHandle>();
+            _handles.Add(new Basic.LocatorHandle(new Locator.ProportionalLocator(this), _canvas));
+            _handles.Add(new Figure.Line.ConnectorHandle(new Locator.ProportionalLocator(this, 0.33f, 0.33f), _canvas, this));
         }
 
         /// <summary>

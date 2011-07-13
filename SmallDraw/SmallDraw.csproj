@@ -94,11 +94,11 @@
     <Compile Include="Locator\TopLeftLocator.cs" />
     <Compile Include="Locator\TopMidLocator.cs" />
     <Compile Include="Locator\TopRightLocator.cs" />
-    <Compile Include="ShapeForm.cs">
+    <Compile Include="ShapeDraw.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShapeForm.Designer.cs">
-      <DependentUpon>ShapeForm.cs</DependentUpon>
+    <Compile Include="ShapeDraw.Designer.cs">
+      <DependentUpon>ShapeDraw.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\Geometry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,8 +117,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ShapeForm.resx">
-      <DependentUpon>ShapeForm.cs</DependentUpon>
+    <EmbeddedResource Include="ShapeDraw.resx">
+      <DependentUpon>ShapeDraw.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

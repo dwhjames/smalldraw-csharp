@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this._groupBox = new System.Windows.Forms.GroupBox();
-            this._canvas = new SmallDraw.Basic.BasicCanvas();
-            this._ngonTool = new SmallDraw.Figure.Polygon.NgonControl();
             this._pentagonTool = new SmallDraw.Basic.ShapeControl();
             this._triangleTool = new SmallDraw.Basic.ShapeControl();
             this._rectangleTool = new SmallDraw.Basic.ShapeControl();
             this._filledRectangleTool = new SmallDraw.Basic.ShapeControl();
             this._lineTool = new SmallDraw.Basic.ShapeControl();
             this._selectTool = new SmallDraw.Basic.ShapeControl();
+            this._canvas = new SmallDraw.Basic.BasicCanvas();
+            this._ngonTool = new SmallDraw.Figure.Polygon.NgonControl();
             this._groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,22 +55,6 @@
             this._groupBox.TabIndex = 0;
             this._groupBox.TabStop = false;
             this._groupBox.Text = "Tools";
-            // 
-            // _canvas
-            // 
-            this._canvas.Location = new System.Drawing.Point(231, 12);
-            this._canvas.Name = "_canvas";
-            this._canvas.Size = new System.Drawing.Size(549, 549);
-            this._canvas.TabIndex = 1;
-            // 
-            // _ngonTool
-            // 
-            this._ngonTool.Canvas = null;
-            this._ngonTool.Location = new System.Drawing.Point(6, 355);
-            this._ngonTool.Name = "_ngonTool";
-            this._ngonTool.ShapeTool = null;
-            this._ngonTool.Size = new System.Drawing.Size(200, 50);
-            this._ngonTool.TabIndex = 2;
             // 
             // _pentagonTool
             // 
@@ -126,14 +110,30 @@
             this._selectTool.Size = new System.Drawing.Size(120, 50);
             this._selectTool.TabIndex = 1;
             // 
-            // ShapeForm
+            // _canvas
+            // 
+            this._canvas.Location = new System.Drawing.Point(231, 12);
+            this._canvas.Name = "_canvas";
+            this._canvas.Size = new System.Drawing.Size(549, 549);
+            this._canvas.TabIndex = 1;
+            // 
+            // _ngonTool
+            // 
+            this._ngonTool.Canvas = null;
+            this._ngonTool.Location = new System.Drawing.Point(46, 355);
+            this._ngonTool.Name = "_ngonTool";
+            this._ngonTool.ShapeTool = null;
+            this._ngonTool.Size = new System.Drawing.Size(120, 80);
+            this._ngonTool.TabIndex = 2;
+            // 
+            // ShapeDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 573);
             this.Controls.Add(this._canvas);
             this.Controls.Add(this._groupBox);
-            this.Name = "ShapeForm";
+            this.Name = "ShapeDraw";
             this.Text = "ShapeForm";
             this._groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -150,6 +150,6 @@
         protected Basic.ShapeControl _rectangleTool;
         protected Basic.ShapeControl _filledRectangleTool;
         protected Basic.BasicCanvas _canvas;
-        protected Figure.Polygon.NgonControl _ngonTool;
+        private Figure.Polygon.NgonControl _ngonTool;
     }
 }
