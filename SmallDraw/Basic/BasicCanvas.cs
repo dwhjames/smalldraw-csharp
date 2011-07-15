@@ -114,15 +114,15 @@ namespace SmallDraw.Basic
                 if (_activeHandler != null)
                 {
                     _activeHandler.Active = false;
-                    this.MouseDown -= new MouseEventHandler(_activeHandler.MouseDown);
-                    this.MouseMove -= new MouseEventHandler(_activeHandler.MouseMove);
-                    this.MouseUp -= new MouseEventHandler(_activeHandler.MouseUp);
+                    this.MouseDown -= _activeHandler.MouseDown;
+                    this.MouseMove -= _activeHandler.MouseMove;
+                    this.MouseUp -= _activeHandler.MouseUp;
                 }
 
                 _activeHandler = value;
-                this.MouseDown += new MouseEventHandler(_activeHandler.MouseDown);
-                this.MouseMove += new MouseEventHandler(_activeHandler.MouseMove);
-                this.MouseUp += new MouseEventHandler(_activeHandler.MouseUp);
+                this.MouseDown += _activeHandler.MouseDown;
+                this.MouseMove += _activeHandler.MouseMove;
+                this.MouseUp += _activeHandler.MouseUp;
                 _activeHandler.Active = true;
             }
         }

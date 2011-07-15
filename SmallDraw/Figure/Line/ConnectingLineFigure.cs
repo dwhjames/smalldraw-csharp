@@ -134,7 +134,7 @@ namespace SmallDraw.Figure.Line
                 _endLocator = _endFigure.CenterLocator;
             }
             var newBounds = this.ExpandedBounds;
-            NotifyObservers();
+            Notify();
             _canvas.Repaint(System.Drawing.Rectangle.Union(oldBounds, newBounds));
         }
         #endregion

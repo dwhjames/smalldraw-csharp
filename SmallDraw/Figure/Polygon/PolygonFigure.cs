@@ -140,7 +140,7 @@ namespace SmallDraw.Figure.Polygon
                 l.Translate(s);
             }
             RecomputeShapeFromBounds();
-            NotifyObservers();
+            Notify();
             _canvas.Repaint(System.Drawing.Rectangle.Union(this.ExpandedBounds, oldBounds));
         }
 
@@ -182,7 +182,7 @@ namespace SmallDraw.Figure.Polygon
                 }
 
                 RecomputeShapeFromBounds();
-                NotifyObservers();
+                Notify();
                 _canvas.Repaint(System.Drawing.Rectangle.Union(this.ExpandedBounds, oldBounds));
             }
         }
@@ -209,7 +209,7 @@ namespace SmallDraw.Figure.Polygon
         void IObserver.Update()
         {
             RecomputeShapeFromBounds();
-            NotifyObservers();
+            Notify();
             _canvas.Repaint(this.ExpandedBounds);
         }
         #endregion

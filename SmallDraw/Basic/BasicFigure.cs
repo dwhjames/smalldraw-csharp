@@ -164,7 +164,7 @@ namespace SmallDraw.Basic
             {
                 var oldBounds = this.ExpandedBounds;
                 _location = value;
-                NotifyObservers();
+                Notify();
                 var newBounds = this.ExpandedBounds;
                 _canvas.Repaint(Rectangle.Union(oldBounds, newBounds));
             }
@@ -192,7 +192,7 @@ namespace SmallDraw.Basic
             {
                 var oldBounds = this.ExpandedBounds;
                 _size = value;
-                NotifyObservers();
+                Notify();
                 var newBounds = this.ExpandedBounds;
                 _canvas.Repaint(Rectangle.Union(oldBounds, newBounds));
             }
@@ -228,7 +228,7 @@ namespace SmallDraw.Basic
         /// <summary>
         /// notify all the observers that the state of the figure has changed
         /// </summary>
-        protected void NotifyObservers()
+        protected void Notify()
         {
             foreach (var obs in _observers)
             {
@@ -241,7 +241,7 @@ namespace SmallDraw.Basic
         /// A helper method to keep the dimensions of a figure in sync.
         /// If a subclass overrides the bounds property in such a way
         /// that it no longer depends on _location and _size, it should
-        /// called this method to update _location and _size
+        /// call this method to update _location and _size
         /// </summary>
         protected void RecomputeShapeFromBounds()
         {

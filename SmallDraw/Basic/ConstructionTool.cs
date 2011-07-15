@@ -48,11 +48,12 @@ namespace SmallDraw.Basic
         /// <param name="e">the mouse event data</param>
         public override void MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Left) return;
-
-            _start = e.Location;
-            _newFigure = NewFigureAt(e.Location);
-            _canvas.AddFigure(_newFigure);
+            if (e.Button == MouseButtons.Left)
+			{
+            	_start = e.Location;
+            	_newFigure = NewFigureAt(e.Location);
+            	_canvas.AddFigure(_newFigure);
+			}
         }
 
         /// <summary>
@@ -62,13 +63,14 @@ namespace SmallDraw.Basic
         /// <param name="e">the mouse event data</param>
         public override void MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Left) return;
-
-            var oldBounds = _newFigure.Bounds;
-            var newBounds = Util.Geometry.RectangleFromPoints(_start, e.Location);
-            _newFigure.Location = newBounds.Location;
-            _newFigure.Size = newBounds.Size;
-            _canvas.Repaint(Rectangle.Inflate(oldBounds, 1, 1));
+            if (e.Button == MouseButtons.Left)
+			{
+            	var oldBounds = _newFigure.Bounds;
+            	var newBounds = Util.Geometry.RectangleFromPoints(_start, e.Location);
+            	_newFigure.Location = newBounds.Location;
+            	_newFigure.Size = newBounds.Size;
+            	_canvas.Repaint(Rectangle.Inflate(oldBounds, 1, 1));
+			}
         }
 
         /// <summary>
@@ -78,9 +80,10 @@ namespace SmallDraw.Basic
         /// <param name="e">the mouse event data</param>
         public override void MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Left) return;
-
-            _newFigure = default(F);
+            if (e.Button == MouseButtons.Left)
+			{
+    	        _newFigure = default(F);
+			}
         }
         #endregion
     }
